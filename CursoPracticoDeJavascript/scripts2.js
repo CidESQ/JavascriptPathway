@@ -1,13 +1,23 @@
 const h1 = document.querySelector("h1");
-//NO SIRVEN
-// const primerNumero = document.getElementsByClassName("numero1");
-// const segundoNumero = document.getElementsByClassName("numero2");
-const primerNumero = document.querySelector(".numero1");
-const segundoNumero = document.querySelector(".numero2");
-const botonCalcular = document.getElementById("calculo");
-const p = document.querySelector("#result");
+const formulario = document.querySelector("#formulario")
+const primerNumero = document.querySelector("#numero1");
+const segundoNumero = document.querySelector("#numero2");
+const botonCalcular = document.querySelector("#calculo");
+const p = document.querySelector("#resultado");
 
-function btnOnClick(){
-    const suma = Number(primerNumero.value) + Number(segundoNumero.value)
-    p.innerText="Resultado: " + suma;
+
+formulario.addEventListener('submit', sumarInputValue);
+
+function sumarInputValue(event) {
+    event.preventDefault();
+    // Convierte los valores de los campos en números
+    const numero1 = parseFloat(primerNumero.value);
+    const numero2 = parseFloat(segundoNumero.value);
+    
+    if (!isNaN(numero1) && !isNaN(numero2)) {
+        const suma = numero1 + numero2;
+        p.innerText = "Resultado: " + suma;
+    } else {
+        p.innerText = "Ingresa números válidos en ambos campos.";
+    }
 }
